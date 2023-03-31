@@ -39,7 +39,7 @@ export class AuthService {
 
       return {
         ...user,
-        token: this.getJwtToken({ email: user.email }),
+        token: this.getJwtToken({ id: user.id }),
       };
     } catch (error) {
       this.handleDBErrors(error);
@@ -55,6 +55,7 @@ export class AuthService {
       select: {
         email: true,
         password: true,
+        id: true,
       },
     });
 
@@ -70,7 +71,7 @@ export class AuthService {
 
     return {
       ...user,
-      token: this.getJwtToken({ email: user.email }),
+      token: this.getJwtToken({ id: user.id }),
     };
     // } catch (error) {
     //   this.handleDBErrors(error);
