@@ -15,8 +15,10 @@ import { createReadStream } from 'fs';
 import { diskStorage } from 'multer';
 import { FilesService } from './files.service';
 import { fileFilter, fileNamer } from './helpers';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('files')
+@ApiTags('Files - Get and Upload')
 export class FilesController {
   constructor(
     private readonly filesService: FilesService,
