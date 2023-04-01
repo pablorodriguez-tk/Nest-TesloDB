@@ -14,10 +14,7 @@ import { Auth, GetUser, RawHeaders } from './decorators';
 import { User } from './entities/user.entity';
 import { IncomingHttpHeaders } from 'http';
 import { UserRoleGuard } from './guards/user-role/user-role.guard';
-import {
-  META_ROLES,
-  RoleProtected,
-} from './decorators/role-protected.decorator';
+import { RoleProtected } from './decorators/role-protected.decorator';
 import { ValidRoles } from './interfaces';
 
 @Controller('auth')
@@ -32,6 +29,12 @@ export class AuthController {
   @Post('login')
   loginUser(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
+  }
+
+  @Get('check-auth-status')
+  @Auth()
+  checkAuthStatus(@GetUser() user: User) {
+    return this.authService.checkAuthStatus(user);
   }
 
   @Get('private')
