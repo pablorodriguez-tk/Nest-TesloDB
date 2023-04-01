@@ -1,8 +1,11 @@
+import { Product } from 'src/products/entities';
+import * as bcrypt from 'bcrypt';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -35,9 +38,13 @@ export class User {
   })
   roles: string[];
 
+  @OneToMany(() => Product, (product) => product.user)
+  product: Product;
+
   @BeforeInsert()
   checkFieldsBeforeInsert() {
     this.email = this.email.toLowerCase().trim();
+    this.password = bcrypt.hashSync(this.password, 10);
   }
 
   @BeforeUpdate()
