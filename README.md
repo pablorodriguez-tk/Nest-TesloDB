@@ -27,3 +27,6 @@ npm run start:dev
 ```
 http://localhost:3000/api/seed
 ```
+
+
+Nota: funciona junto a https://github.com/pablorodriguez-tk/NESTJS-websocket-front (solo para ver parte de websocket)
